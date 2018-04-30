@@ -1,5 +1,7 @@
 import React from 'react';
 
+//import {newGame} from '../logic';
+
 import Tile from './tile';
 
 import Message from './message';
@@ -21,37 +23,60 @@ export default class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      squares: Array(9).fill(''),
-      turn: 'X',
-      class: Array(9).fill('')
+      state: 'plr1',
+      board: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      line: [],
+      class: [0, 0, 0, 0, 0, 0, 0, 0, 0]
     }
   }
 
+  //state = newGame();
 
-  handleClick = (i) => {
-    const squares = this.state.squares.slice();
+
+
+
+  clickedTile = (i) => {
+    const board = this.state.board.slice();
     const css = this.state.class.slice();
-    if (this.checkWinner(squares) || squares[i]) {
+    if (this.checkWinner(board) || board[i]) {
       return;
     }
 
-    if (this.state.turn) {
+    if (this.state.state) {
       css[i] = "tile plr1";
-      squares[i] = 'X';
+      board[i] = 'X';
     } else {
       css[i] = "tile plr2";
-      squares[i] = 'O';
+      board[i] = 'O';
     }
 
     this.setState({
-      squares: squares,
-      turn: !this.state.turn,
+      board: board,
+      state: !this.state.state,
       class: css
     });
   }
 
 
-  checkWinner = (squares) => {
+
+
+  // resetGame = (event) => {
+  //   this.setState(newGame())
+  // };
+
+  resetButton = () => {
+    this.setState({
+      state: 'plr1',
+      board: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      line: [],
+      class: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    });
+  }
+
+
+
+
+  checkWinner = (board) => {
     const lines = [
       [0, 1, 2],
       [3, 4, 5],
@@ -64,8 +89,8 @@ export default class Game extends React.Component {
     ];
     for (let i = 0; i < lines.length; i++) {
       const [line1, line2, line3] = lines[i];
-      if (squares[line1] && squares[line1] === squares[line2] && squares[line1] === squares[line3]) {
-        if (squares[line1] === 'X') {
+      if (board[line1] && board[line1] === board[line2] && board[line1] === board[line3]) {
+        if (board[line1] === 'X') {
           return 'Player #1';
         } else {
           return 'Player #2';
@@ -75,16 +100,9 @@ export default class Game extends React.Component {
     return null;
   }
 
+  render() {
 
-
-
-  resetButton = () => {
-    this.setState({ squares: [], class: [], turn: true });
-  }
-
-  render(squares) {
-
-    const winner = this.checkWinner(this.state.squares);
+    const winner = this.checkWinner(this.state.board);
     let result;
 
     if (winner) {
@@ -97,7 +115,7 @@ export default class Game extends React.Component {
     } else if (result == 'draw') {
       result = 'Draw'
     } else {
-      result = <Message value={(this.state.turn ? '  Player #1' : ' Player #2')} />
+      result = <Message value={(this.state.state ? '  Player #1' : ' Player #2')} />
     }
 
 
@@ -112,32 +130,32 @@ export default class Game extends React.Component {
           </div>
         <div className="board">
           <Tile
-            onClick={() => this.handleClick(0)}
-            value={this.state.squares[0]} class={this.state.class[0]} />
+            onClick={() => this.clickedTile(0)}
+            value={this.state.board[0]} class={this.state.class[0]} />
           <Tile
-            onClick={() => this.handleClick(1)}
-            value={this.state.squares[1]} class={this.state.class[1]} />
+            onClick={() => this.clickedTile(1)}
+            value={this.state.board[1]} class={this.state.class[1]} />
           <Tile
-            onClick={() => this.handleClick(2)}
-            value={this.state.squares[2]} class={this.state.class[2]} />
+            onClick={() => this.clickedTile(2)}
+            value={this.state.board[2]} class={this.state.class[2]} />
           <Tile
-            onClick={() => this.handleClick(3)}
-            value={this.state.squares[3]} class={this.state.class[3]} />
+            onClick={() => this.clickedTile(3)}
+            value={this.state.board[3]} class={this.state.class[3]} />
           <Tile
-            onClick={() => this.handleClick(4)}
-            value={this.state.squares[4]} class={this.state.class[4]} />
+            onClick={() => this.clickedTile(4)}
+            value={this.state.board[4]} class={this.state.class[4]} />
           <Tile
-            onClick={() => this.handleClick(5)}
-            value={this.state.squares[5]} class={this.state.class[5]} />
+            onClick={() => this.clickedTile(5)}
+            value={this.state.board[5]} class={this.state.class[5]} />
           <Tile
-            onClick={() => this.handleClick(6)}
-            value={this.state.squares[6]} class={this.state.class[6]} />
+            onClick={() => this.clickedTile(6)}
+            value={this.state.board[6]} class={this.state.class[6]} />
           <Tile
-            onClick={() => this.handleClick(7)}
-            value={this.state.squares[7]} class={this.state.class[7]} />
+            onClick={() => this.clickedTile(7)}
+            value={this.state.board[7]} class={this.state.class[7]} />
           <Tile
-            onClick={() => this.handleClick(8)}
-            value={this.state.squares[8]} class={this.state.class[8]} />
+            onClick={() => this.clickedTile(8)}
+            value={this.state.board[8]} class={this.state.class[8]} />
         </div>
         <div id="status">{result}</div>
         <button className="reset" onClick={this.resetButton}>Reset</button>
