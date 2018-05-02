@@ -25,7 +25,6 @@
     "copypublic": "node setupoutput",
     "build": "npm run copypublic && webpack",
     "start": "npm run copypublic && webpack-dev-server",
-    "test": "jest test/* --notify",
-    "watch": "tsc -w src/index.ts --outDir out"
+    "test": "jest test/* --notify"
   }
 }
