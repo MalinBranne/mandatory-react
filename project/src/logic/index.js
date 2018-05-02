@@ -48,6 +48,28 @@ export const newGame = () => ({
 // an unchanged game will be returned.
 // */
 
-// export const makeMove = (game, pos) => {
-//   // ...to be implemented!
-// }
+export const makeMove = (game, pos) => {
+
+
+
+
+    const board = game.board.slice();
+    const css = game.class.slice();
+    if (this.checkWinner(board) || board[pos]) {
+        return;
+    }
+
+    if (game) {
+        css[pos] = "tile plr1";
+        board[pos] = 'X';
+    } else {
+        css[pos] = "tile plr2";
+        board[pos] = 'O';
+    }
+
+    this.setState({
+        board: board,
+        state: !game,
+        class: css
+    });
+}

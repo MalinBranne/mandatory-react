@@ -64,14 +64,7 @@ export default class Game extends React.Component {
     this.setState(newGame())
   };
 
-  // resetButton = () => {
-  //   this.setState({
-  //     state: 'plr1',
-  //     board: [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  //     line: [],
-  //     class: [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  //   });
-  // }
+
 
 
 
