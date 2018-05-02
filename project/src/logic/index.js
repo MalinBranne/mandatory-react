@@ -50,9 +50,6 @@ export const newGame = () => ({
 
 export const makeMove = (game, pos) => {
 
-
-
-
     const board = game.board.slice();
     const css = game.class.slice();
     if (this.checkWinner(board) || board[pos]) {

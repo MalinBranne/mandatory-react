@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { newGame } from '../logic';
+import { makeMove, newGame } from '../logic';
 
 import Tile from './tile';
 
@@ -20,15 +20,7 @@ and all tiles in an element with a `board` CSS class.
 */
 
 export default class Game extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     state: 'plr1',
-  //     board: [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  //     line: [],
-  //     class: [0, 0, 0, 0, 0, 0, 0, 0, 0]
-  //   }
-  // }
+
 
   state = newGame();
 
@@ -66,9 +58,6 @@ export default class Game extends React.Component {
 
 
 
-
-
-
   checkWinner = (board) => {
     const lines = [
       [0, 1, 2],
@@ -100,20 +89,13 @@ export default class Game extends React.Component {
 
     if (winner) {
       result = 'The winner is: ' + winner
-
     } else if (winner) {
-
       result = 'The winner is: ' + winner
-
     } else if (result == 'draw') {
       result = 'Draw'
     } else {
       result = <Message value={(this.state.state ? '  Player #1' : ' Player #2')} />
     }
-
-
-
-
 
     return (
 
@@ -153,7 +135,6 @@ export default class Game extends React.Component {
         <div id="status">{result}</div>
         <button className="reset" onClick={this.resetGame}>Reset</button>
       </div>
-
     );
   }
 
