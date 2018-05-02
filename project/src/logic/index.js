@@ -34,7 +34,8 @@
 export const newGame = () => ({
     state: 'plr1',
     board: [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    line: []
+    line: [],
+    class: [0, 0, 0, 0, 0, 0, 0, 0, 0]
 });
 
 // /*

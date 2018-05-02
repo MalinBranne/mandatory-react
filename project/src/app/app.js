@@ -1,6 +1,6 @@
 import React from 'react';
 
-//import {newGame} from '../logic';
+import { newGame } from '../logic';
 
 import Tile from './tile';
 
@@ -20,17 +20,17 @@ and all tiles in an element with a `board` CSS class.
 */
 
 export default class Game extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      state: 'plr1',
-      board: [0, 0, 0, 0, 0, 0, 0, 0, 0],
-      line: [],
-      class: [0, 0, 0, 0, 0, 0, 0, 0, 0]
-    }
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     state: 'plr1',
+  //     board: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  //     line: [],
+  //     class: [0, 0, 0, 0, 0, 0, 0, 0, 0]
+  //   }
+  // }
 
-  //state = newGame();
+  state = newGame();
 
 
 
@@ -60,18 +60,18 @@ export default class Game extends React.Component {
 
 
 
-  // resetGame = (event) => {
-  //   this.setState(newGame())
-  // };
+  resetGame = (event) => {
+    this.setState(newGame())
+  };
 
-  resetButton = () => {
-    this.setState({
-      state: 'plr1',
-      board: [0, 0, 0, 0, 0, 0, 0, 0, 0],
-      line: [],
-      class: [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    });
-  }
+  // resetButton = () => {
+  //   this.setState({
+  //     state: 'plr1',
+  //     board: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  //     line: [],
+  //     class: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  //   });
+  // }
 
 
 
@@ -158,7 +158,7 @@ export default class Game extends React.Component {
             value={this.state.board[8]} class={this.state.class[8]} />
         </div>
         <div id="status">{result}</div>
-        <button className="reset" onClick={this.resetButton}>Reset</button>
+        <button className="reset" onClick={this.resetGame}>Reset</button>
       </div>
 
     );
